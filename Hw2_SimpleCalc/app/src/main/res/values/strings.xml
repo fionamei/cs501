@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Hw2_SimpleCalc</string>
+    <string name="input_the_first_number">Input the First Number</string>
+    <string name="input_the_second_number">Input the Second Number</string>
+    <string name="calculate">Calculate</string>
+    <string-array name="operators_array">
+        <item>Select Operator</item>
+        <item>+</item>
+        <item>-</item>
+        <item>/</item>
+        <item>x</item>
+    </string-array>
+</resources>

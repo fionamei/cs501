@@ -1,6 +1,7 @@
 package com.example.hw2_simplecalc
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -9,21 +10,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    val NOT_SELECTED = 0
     val ADD = 1
     val SUBTRACT = 2
     val DIVIDE = 3
     val MULTIPLY = 4
+    val MOD = 5
 
     private lateinit var firstNumET: EditText
     private lateinit var operatorSpinner: Spinner
     private lateinit var secondNumET: EditText
     private lateinit var calculateBtn: Button
     private lateinit var answerTV: TextView
-    private var operator: Int? = null
+    private var operator = NOT_SELECTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +63,8 @@ class MainActivity : AppCompatActivity() {
                     2 -> SUBTRACT
                     3 -> DIVIDE
                     4 -> MULTIPLY
-                    else -> null
+                    5 -> MOD
+                    else -> NOT_SELECTED
                 }
             }
 
@@ -71,17 +76,33 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpClickListener() {
         calculateBtn.setOnClickListener {
-            firstNumET.text?.toString()?.toInt()?.let { firstNum ->
-                secondNumET.text?.toString()?.toInt()?.let { secondNum ->
-                    operator?.let { operator ->
-                        answerTV.text = if (secondNum == 0 && operator == DIVIDE) getString(R.string.calculate) else calculate(firstNum, secondNum, operator).toString()
-                    }
-                }
+//            if (firstNumET.text.isBlank()) {
+//                Log.i("testing", "text is blank")
+//            } else {
+//                Log.i("testing", "text is not !! blank")
+//            }
 
+            answerTV.text = ""
+
+            if (firstNumET.text.isBlank() || secondNumET.text.isBlank() || operator == NOT_SELECTED) {
+                Log.i("testing", "hit!!")
+                Toast.makeText(this, "Please fill in the entire equation!", Toast.LENGTH_SHORT).show()
+            } else {
+                try {
+                    val secondNum = secondNumET.text.toString().toInt()
+
+                    if (operator == DIVIDE && secondNum == 0) {
+                        Toast.makeText(this, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
+
+                    } else if (operator == MOD && secondNum == 0) {
+                        Toast.makeText(this, "Cannot mod with 0", Toast.LENGTH_SHORT).show()
+                    } else {
+                        answerTV.text = calculate(firstNumET.text.toString().toInt(), secondNum, operator).toString()
+                    }
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show()
+                }
             }
-            // had this originally but asked chatgpt how i could make it look nicer since
-            // i knew kotlin has fancy question marks to do null checks
-            // if (firstNumET.text != null && secondNumET.text != null && operator != null)
         }
     }
 
@@ -91,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             SUBTRACT -> op1 - op2
             DIVIDE -> op1 / op2
             MULTIPLY -> op1 * op2
+            MOD -> op1 % op2
             else -> 0
         }
 }

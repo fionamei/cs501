@@ -5,9 +5,10 @@
     <string name="calculate">Calculate</string>
     <string-array name="operators_array">
         <item>Select Operator</item>
-        <item>+</item>
-        <item>-</item>
-        <item>/</item>
-        <item>x</item>
+        <item>ADD +</item>
+        <item>SUBTRACT -</item>
+        <item>DIVIDE /</item>
+        <item>MULTIPLY x</item>
+        <item>MOD %</item>
     </string-array>
 </resources>

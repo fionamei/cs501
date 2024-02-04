@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/resultET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/gap_space"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/resultET"
         tools:text="something that takes up space bc i messed up" />
 
     <TextView
@@ -197,7 +197,7 @@
         app:layout_constraintTop_toBottomOf="@+id/subtractTV" />
 
     <TextView
-        android:id="@+id/zeroTv"
+        android:id="@+id/zeroTV"
         android:layout_width="@dimen/calculator_double_btn_size"
         android:layout_height="@dimen/calculator_btn_size"
         android:layout_margin="@dimen/margin_calculator_btn"
@@ -209,7 +209,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sevenTV" />
 
     <TextView
-        android:id="@+id/decimalTv"
+        android:id="@+id/decimalTV"
         android:layout_width="@dimen/calculator_btn_size"
         android:layout_height="@dimen/calculator_btn_size"
         android:layout_margin="@dimen/margin_calculator_btn"
@@ -217,7 +217,7 @@
         android:gravity="center"
         android:text="@string/decimal"
         android:textSize="@dimen/calculator_text_size"
-        app:layout_constraintStart_toEndOf="@id/zeroTv"
+        app:layout_constraintStart_toEndOf="@id/zeroTV"
         app:layout_constraintTop_toBottomOf="@+id/nineTV" />
 
     <TextView
@@ -229,7 +229,7 @@
         android:gravity="center"
         android:text="@string/equal"
         android:textSize="@dimen/calculator_text_size"
-        app:layout_constraintStart_toEndOf="@id/decimalTv"
+        app:layout_constraintStart_toEndOf="@id/decimalTV"
         app:layout_constraintTop_toBottomOf="@+id/sqrtTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

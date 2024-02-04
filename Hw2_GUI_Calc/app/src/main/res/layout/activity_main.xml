@@ -6,13 +6,231 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:gravity="end"
+        android:inputType="numberDecimal"
+        android:textSize="@dimen/calculator_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.218"
+        tools:text="5 * 4 + 3" />
+
+    <TextView
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gap_space"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        android:textColor="@color/white"
+        tools:text="something that takes up space bc i messed up" />
+
+    <TextView
+        android:id="@+id/oneTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:text="@string/one"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/twoTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:text="@string/two"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/oneTV"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/threeTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/three"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/twoTV"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/addTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/add"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/threeTV"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/multiplyTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/multiply"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/addTV"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/fourTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/four"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oneTV" />
+
+    <TextView
+        android:id="@+id/fiveTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/five"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/fourTV"
+        app:layout_constraintTop_toBottomOf="@+id/twoTV" />
+
+    <TextView
+        android:id="@+id/sixTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/six"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/fiveTV"
+        app:layout_constraintTop_toBottomOf="@+id/threeTV" />
+
+    <TextView
+        android:id="@+id/subtractTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/subtract"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/sixTV"
+        app:layout_constraintTop_toBottomOf="@+id/addTV" />
+
+    <TextView
+        android:id="@+id/divideTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/divide"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/subtractTV"
+        app:layout_constraintTop_toBottomOf="@+id/multiplyTV" />
+
+    <TextView
+        android:id="@+id/sevenTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/seven"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourTV" />
+
+    <TextView
+        android:id="@+id/eightTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/eight"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/sevenTV"
+        app:layout_constraintTop_toBottomOf="@+id/fiveTV" />
+
+    <TextView
+        android:id="@+id/nineTV"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/nine"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/eightTV"
+        app:layout_constraintTop_toBottomOf="@+id/sixTV" />
+
+    <TextView
+        android:id="@+id/sqrtTV"
+        android:layout_width="@dimen/calculator_double_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/sqrt"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/nineTV"
+        app:layout_constraintTop_toBottomOf="@+id/subtractTV" />
+
+    <TextView
+        android:id="@+id/zeroTv"
+        android:layout_width="@dimen/calculator_double_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/zero"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sevenTV" />
+
+    <TextView
+        android:id="@+id/decimalTv"
+        android:layout_width="@dimen/calculator_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/decimal"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/zeroTv"
+        app:layout_constraintTop_toBottomOf="@+id/nineTV" />
+
+    <TextView
+        android:id="@+id/equalTV"
+        android:layout_width="@dimen/calculator_double_btn_size"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:gravity="center"
+        android:background="@color/btn_background"
+        android:layout_margin="@dimen/margin_calculator_btn"
+        android:text="@string/equal"
+        android:textSize="@dimen/calculator_text_size"
+        app:layout_constraintStart_toEndOf="@id/decimalTv"
+        app:layout_constraintTop_toBottomOf="@+id/sqrtTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

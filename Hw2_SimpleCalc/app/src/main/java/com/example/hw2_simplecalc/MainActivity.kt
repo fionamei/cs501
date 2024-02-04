@@ -1,7 +1,6 @@
 package com.example.hw2_simplecalc
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -76,31 +75,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpClickListener() {
         calculateBtn.setOnClickListener {
-//            if (firstNumET.text.isBlank()) {
-//                Log.i("testing", "text is blank")
-//            } else {
-//                Log.i("testing", "text is not !! blank")
-//            }
 
             answerTV.text = ""
-
             if (firstNumET.text.isBlank() || secondNumET.text.isBlank() || operator == NOT_SELECTED) {
-                Log.i("testing", "hit!!")
-                Toast.makeText(this, "Please fill in the entire equation!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.incomplete_equation), Toast.LENGTH_SHORT).show()
             } else {
+
                 try {
                     val secondNum = secondNumET.text.toString().toInt()
 
                     if (operator == DIVIDE && secondNum == 0) {
-                        Toast.makeText(this, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.divide_by_zero), Toast.LENGTH_SHORT).show()
 
                     } else if (operator == MOD && secondNum == 0) {
-                        Toast.makeText(this, "Cannot mod with 0", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.mod_by_zero), Toast.LENGTH_SHORT).show()
                     } else {
                         answerTV.text = calculate(firstNumET.text.toString().toInt(), secondNum, operator).toString()
                     }
                 } catch (e: NumberFormatException) {
-                    Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show()
+                     Toast.makeText(this, getString(R.string.invalid_format), Toast.LENGTH_SHORT).show()
                 }
             }
         }

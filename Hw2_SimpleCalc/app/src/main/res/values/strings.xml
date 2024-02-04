@@ -11,4 +11,8 @@
         <item>MULTIPLY x</item>
         <item>MOD %</item>
     </string-array>
+    <string name="incomplete_equation">Please fill in the entire equation!</string>
+    <string name="divide_by_zero">Cannot Divide by zero!</string>
+    <string name="mod_by_zero">Cannot Mod zero!</string>
+    <string name="invalid_format">Invalid Number Format</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,16 +112,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorClick(view: View) {
-        val currentText = resultET.text
-        operatorView?.let {
-            resultET.setText(calculate())
+        var operator = 0
+        if (view is TextView) {
+            operator = when (view.text.toString()) {
+                "+" -> ADD
+                "-" -> SUBTRACT
+                "/" -> DIVIDE
+                "*" -> MULTIPLY
+                "√" -> SQRT
+                else -> 0
+            }
+        }
+        val localNum1 = num1
+        if (localNum1 == null || resultET.text.isBlank() || operator == 0) {
+            Log.i("testing",  "not valid something is wrong" + localNum1 + operator)
+        } else {
+            try {
+                val num2 = resultET.text.toString().toDouble()
+                if (operator == DIVIDE && num2 == 0.0) {
+                    Snackbar.make(view, getString(R.string.divide_by_zero), Snackbar.LENGTH_SHORT).show()
+
+                } else {
+                    resultET.setText(calculate(localNum1.toDouble(), num2, operator).toString())
+                }
+            } catch (e: NumberFormatException) {
+                Snackbar.make(view, getString(R.string.invalid_format), Snackbar.LENGTH_SHORT).show()
+            }
         }
         operatorView = view
         view.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_clicked_background))
+        num1 = resultET.text.toString().toDouble()
     }
 
-    private fun calculate(): String {
-        Log.i("testing", "hit!")
-        return "9999"
-    }
+    private fun calculate(op1: Double, op2: Double, op: Int) =
+        when (op) {
+            ADD -> op1 + op2
+            SUBTRACT -> op1 - op2
+            DIVIDE -> op1 / op2
+            MULTIPLY -> op1 * op2
+            // TODO: figure out logic for this sqrt
+            SQRT -> op1 % op2
+            else -> 0
+        }
 }

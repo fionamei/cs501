@@ -18,4 +18,7 @@
     <string name="equal">=</string>
     <string name="decimal">.</string>
     <string name="clear">clear</string>
+    <string name="invalid_format">invalid formatting</string>
+    <string name="divide_by_zero">Cannot divide by zero!</string>
+    <string name="sqrt_negative">Cannot square a negative!</string>
 </resources>

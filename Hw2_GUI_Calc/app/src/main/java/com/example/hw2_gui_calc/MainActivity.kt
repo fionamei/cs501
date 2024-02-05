@@ -2,6 +2,7 @@ package com.example.hw2_gui_calc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -35,9 +36,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var resultET: EditText
     private lateinit var numbers: Array<TextView>
     private lateinit var operators: Array<TextView>
+    private lateinit var clearTV: TextView
 
-    private var num1: Double ?= null
-    private var opView: TextView ?= null
+    private var num1: Double? = null
+    private var operatorView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         decimal = findViewById(R.id.decimalTV)
         equal = findViewById(R.id.equalTV)
         resultET = findViewById(R.id.resultET)
+        clearTV = findViewById(R.id.clearTV)
 
         numbers = arrayOf(
             zero, one, two, three, four, five, six, seven, eight, nine, decimal
@@ -88,22 +91,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         for (op in operators) {
-            op.setOnClickListener{
+            op.setOnClickListener {
                 handleOperatorClick(it)
             }
+        }
+
+        clearTV.setOnClickListener {
+            resultET.setText("0")
+            num1 = null
+            operatorView?.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_background))
+            operatorView = null
         }
     }
 
     private fun handleNumberClick(input: String) {
-        val currentText = resultET.text
-        resultET.text = currentText.append(input)
+        resultET.setText(input)
+        // i got this context compact thing from chatgpt too
+        operatorView?.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_background))
     }
 
     private fun handleOperatorClick(view: View) {
         val currentText = resultET.text
-        // i got this from chatgpt too
+        operatorView?.let {
+            resultET.setText(calculate())
+        }
+        operatorView = view
         view.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_clicked_background))
     }
 
-    // TODO: clear button and clear button clears the operators and numbers and edit text
+    private fun calculate(): String {
+        Log.i("testing", "hit!")
+        return "9999"
+    }
 }

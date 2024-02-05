@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeViews() {
-        zero = findViewById(R.id.zeroTv)
+        zero = findViewById(R.id.zeroTV)
         one = findViewById(R.id.oneTV)
         two = findViewById(R.id.twoTV)
         three = findViewById(R.id.threeTV)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         add = findViewById(R.id.addTV)
         subtract = findViewById(R.id.subtractTV)
         sqrt = findViewById(R.id.sqrtTV)
-        decimal = findViewById(R.id.decimalTv)
+        decimal = findViewById(R.id.decimalTV)
         equal = findViewById(R.id.equalTV)
         resultET = findViewById(R.id.resultET)
     }

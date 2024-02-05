@@ -10,6 +10,7 @@
         android:id="@+id/resultET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789.+-*/√"
         android:gravity="end"
         android:inputType="numberDecimal"
         android:textSize="@dimen/calculator_text_size"
@@ -17,16 +18,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218"
+        app:layout_constraintVertical_bias="0.163"
         tools:text="5 * 4 + 3" />
 
     <TextView
-        android:id="@+id/space"
+        android:id="@+id/clearTV"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/gap_space"
-        android:textColor="@color/white"
+        android:layout_height="@dimen/calculator_btn_size"
+        android:layout_marginHorizontal="@dimen/margin_calculator_btn"
+        android:layout_marginTop="@dimen/gap_space"
+        android:background="@color/btn_background"
+        android:gravity="center"
+        android:textSize="@dimen/calculator_text_size"
         app:layout_constraintTop_toBottomOf="@+id/resultET"
-        tools:text="something that takes up space bc i messed up" />
+        android:text="@string/clear" />
 
     <TextView
         android:id="@+id/oneTV"
@@ -38,7 +43,7 @@
         android:text="@string/one"
         android:textSize="@dimen/calculator_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        app:layout_constraintTop_toBottomOf="@+id/clearTV" />
 
     <TextView
         android:id="@+id/twoTV"
@@ -50,7 +55,7 @@
         android:text="@string/two"
         android:textSize="@dimen/calculator_text_size"
         app:layout_constraintStart_toEndOf="@id/oneTV"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        app:layout_constraintTop_toBottomOf="@+id/clearTV" />
 
     <TextView
         android:id="@+id/threeTV"
@@ -62,7 +67,7 @@
         android:text="@string/three"
         android:textSize="@dimen/calculator_text_size"
         app:layout_constraintStart_toEndOf="@id/twoTV"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        app:layout_constraintTop_toBottomOf="@+id/clearTV" />
 
     <TextView
         android:id="@+id/addTV"
@@ -74,7 +79,7 @@
         android:text="@string/add"
         android:textSize="@dimen/calculator_text_size"
         app:layout_constraintStart_toEndOf="@id/threeTV"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        app:layout_constraintTop_toBottomOf="@+id/clearTV" />
 
     <TextView
         android:id="@+id/multiplyTV"
@@ -86,7 +91,7 @@
         android:text="@string/multiply"
         android:textSize="@dimen/calculator_text_size"
         app:layout_constraintStart_toEndOf="@id/addTV"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
+        app:layout_constraintTop_toBottomOf="@+id/clearTV" />
 
     <TextView
         android:id="@+id/fourTV"

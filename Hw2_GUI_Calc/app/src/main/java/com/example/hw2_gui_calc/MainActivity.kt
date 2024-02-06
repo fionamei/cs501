@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     val MULTIPLY = 3
     val DIVIDE = 4
     val SQRT = 5
+    val EQUAL = 6
 
     private lateinit var zero: TextView
     private lateinit var one: TextView
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private var num1: Double? = null
     private var operatorView: View? = null
+    private var clickedOperator = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,46 +104,88 @@ class MainActivity : AppCompatActivity() {
             num1 = null
             operatorView?.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_background))
             operatorView = null
+            clickedOperator = false
         }
     }
 
     private fun handleNumberClick(input: String) {
-        resultET.setText(input)
-        // i got this context compact thing from chatgpt too
+        if (!clickedOperator && resultET.text.toString() != "0") {
+            resultET.append(input)
+        } else {
+            resultET.setText(input)
+            clickedOperator = false
+        }
+        // i got this context compact thing from chatgpt too!!!
         operatorView?.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_background))
     }
 
     private fun handleOperatorClick(view: View) {
         var operator = 0
-        if (view is TextView) {
-            operator = when (view.text.toString()) {
+        val localOperator = operatorView
+        if (localOperator is TextView) {
+            operator = when (localOperator.text.toString()) {
                 "+" -> ADD
                 "-" -> SUBTRACT
                 "/" -> DIVIDE
                 "*" -> MULTIPLY
                 "√" -> SQRT
+                "=" -> EQUAL
                 else -> 0
             }
         }
-        val localNum1 = num1
-        if (localNum1 == null || resultET.text.isBlank() || operator == 0) {
-            Log.i("testing",  "not valid something is wrong" + localNum1 + operator)
+        if (clickedOperator && operator != SQRT) {
+            Snackbar.make(view, getString(R.string.operator_multi_click), Snackbar.LENGTH_SHORT)
+                .show()
         } else {
-            try {
-                val num2 = resultET.text.toString().toDouble()
-                if (operator == DIVIDE && num2 == 0.0) {
-                    Snackbar.make(view, getString(R.string.divide_by_zero), Snackbar.LENGTH_SHORT).show()
 
-                } else {
-                    resultET.setText(calculate(localNum1.toDouble(), num2, operator).toString())
+            val localNum1 = num1
+            if (localNum1 == null || resultET.text.isBlank() || operator == 0) {
+                Log.i("testing", "not valid something is wrong" + localNum1 + operator)
+            } else {
+                try {
+                    val num2 = resultET.text.toString().toDouble()
+                    if (operator == DIVIDE && num2 == 0.0) {
+                        Snackbar.make(
+                            view,
+                            getString(R.string.divide_by_zero),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } else if (operator == SQRT && num2 < 0) {
+                        Snackbar.make(
+                            view,
+                            getString(R.string.sqrt_negative),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        resultET.setText(calculate(localNum1.toDouble(), num2, operator).toString())
+                    }
+                } catch (e: NumberFormatException) {
+                    Snackbar.make(view, getString(R.string.invalid_format), Snackbar.LENGTH_SHORT)
+                        .show()
                 }
-            } catch (e: NumberFormatException) {
-                Snackbar.make(view, getString(R.string.invalid_format), Snackbar.LENGTH_SHORT).show()
             }
+            if (view is TextView && view.text.toString() == "=") {
+                operatorView?.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.btn_background
+                    )
+                )
+                operatorView = null
+                clickedOperator = true
+            } else {
+                operatorView = view
+                view.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.btn_clicked_background
+                    )
+                )
+                clickedOperator = true
+            }
+            num1 = resultET.text.toString().toDouble()
+
         }
-        operatorView = view
-        view.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_clicked_background))
-        num1 = resultET.text.toString().toDouble()
     }
 
     private fun calculate(op1: Double, op2: Double, op: Int) =
@@ -150,8 +194,7 @@ class MainActivity : AppCompatActivity() {
             SUBTRACT -> op1 - op2
             DIVIDE -> op1 / op2
             MULTIPLY -> op1 * op2
-            // TODO: figure out logic for this sqrt
-            SQRT -> op1 % op2
+            SQRT -> Math.sqrt(op2)
             else -> 0
         }
 }

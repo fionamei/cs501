@@ -21,4 +21,5 @@
     <string name="invalid_format">invalid formatting</string>
     <string name="divide_by_zero">Cannot divide by zero!</string>
     <string name="sqrt_negative">Cannot square a negative!</string>
+    <string name="operator_multi_click">You can only use one operator at a time!</string>
 </resources>
